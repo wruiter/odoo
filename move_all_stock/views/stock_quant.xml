@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+<data>
+
+        <record id="stock_quant_move_view" model="ir.ui.view">
+            <field name="name">stock.picking.bulk.form</field>
+            <field name="model">stock.picking.bulk</field>
+            <field name="arch" type="xml">
+            <form string="Move all stock from location">
+               <p class="oe_grey">Select the desired destination location.
+               </p>
+               <field name="location_dest_id"/>
+                    <p class="oe_grey">
+                        Confirming this move wil create a internal move for al the selected items.
+                        This move will be in draft mode and grouped by source location.
+                    </p>
+                    <footer>
+                        <button string="Confirm move" name="move_confirm" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="stock_quant_move_list">
+            <field name="name">stock.picking.list</field>
+            <field name="model">stock.picking.bulk</field>
+            <field name="arch" type="xml">
+                <tree string="Operation Types">
+                    <field name="name"/>
+                    <field name="location_dest_id"/>
+                </tree>
+            </field>
+        </record>
+
+        
+        
+        <act_window id="action_stock_quant_move"
+            multi="True"
+            key2="client_action_multi"
+            name="Move all stock to location"
+            res_model="stock.picking.bulk"
+            src_model="stock.quant"
+            view_mode="form"
+            target="new"
+            view_type="form" />
+
+</data>
+</odoo>
+
+ 
+
+ 
+
